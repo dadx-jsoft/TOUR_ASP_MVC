@@ -1,0 +1,42 @@
+﻿@*@model TOUR.Models.TOUR*@
+@model TOUR.Models.Tour
+@{
+    ViewBag.Title = "DestinationDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="destination_banner_wrap overlay">
+    <div class="destination_text text-center">
+        <h3>
+            @Html.Raw(Model.tenTour)
+        </h3>
+        @*<p>Pixel perfect design with awesome contents</p>*@
+    </div>
+</div>
+
+<div class="destination_details_info">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-9">
+                <div class="destination_info">
+                    @if (ViewBag.success != null)
+                    {
+                        @*<div class="alert alert-dismissable" role="alert">@ViewBag.success</div>*@
+                        <script>alert("Đặt thành công");</script>
+                    }
+                    <h3>Description</h3>
+
+                    @Html.Raw(Model.moTaTour)
+                </div>
+                <div class="bordered_1px">
+                    @{
+                        Html.RenderAction("_Join", "Home", new { id = Model.idTour });
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

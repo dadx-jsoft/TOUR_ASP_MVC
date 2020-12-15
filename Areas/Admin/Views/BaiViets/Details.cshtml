@@ -1,0 +1,62 @@
+﻿@model TOUR.Models.BaiViet
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+    var ImagePath = "~/Areas/Admin/Assets/images/baiviet/" + Model.anhBaiViet;
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    @*<h4>BaiViet</h4>*@
+    @*<hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Chủ đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDeBaiViet.moTaChuDe)
+        </dd>
+
+        <dt>
+            Tiêu đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tieuDe)
+        </dd>
+
+        <dt>
+            Ảnh bài viết
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" alt="Alternate Text" />
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.noiDung)*@
+            @Html.Raw(Model.noiDung)
+        </dd>
+
+        <dt>
+            Ngày tạo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayTao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

@@ -1,0 +1,113 @@
+﻿@model TOUR.Models.Tour
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h2>Delete</h2>*@
+
+<h3>Bạn có chắc muốn xóa?</h3>
+<div>
+    @*<h4>Tour</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Dòng tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DongTour.moTaDongTour)
+        </dd>
+
+        <dt>
+            Địa điểm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaDiem)
+        </dd>
+
+        <dt>
+            Ảnh tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anhTour)
+        </dd>
+
+        <dt>
+            Ảnh chi tiết tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anhChiTietTour)
+        </dd>
+
+        <dt>
+            Giá gốc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaGoc)
+        </dd>
+
+        <dt>
+            Giá khuyến mãi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaKhuyenMai)
+        </dd>
+
+        <dt>
+            Khuyến mãi ưu đãi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.khuyenMaiUuDai)
+        </dd>
+
+        <dt>
+            Tên tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenTour)
+        </dd>
+
+        <dt>
+            Tên tiêu đề tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenTieuDeTour)
+        </dd>
+
+        <dt>
+            Mô tả tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moTaTour)
+        </dd>
+
+        <dt>
+            Số ngày
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soNgay)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "Index")
+        </div>
+    }
+</div>

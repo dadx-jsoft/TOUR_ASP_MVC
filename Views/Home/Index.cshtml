@@ -1,0 +1,221 @@
+﻿@model IEnumerable<TOUR.Models.Tour>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<!-- slider_area_start -->
+<div class="slider_area">
+    <div class="slider_active owl-carousel">
+        <div class="single_slider  d-flex align-items-center slider_bg_1 overlay">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 col-md-12">
+                        <div class="slider_text text-center">
+                            <h3>Việt Nam Tour</h3> 
+                            <br /> <br /> <br /> 
+                            @*<p>Pixel perfect design with awesome contents</p>*@
+                            @*<a href="#" class="boxed-btn3">Khám phá ngay</a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- slider_area_end -->
+<!-- where_togo_area_start  -->
+@*@{
+    Html.RenderPartial("_SearchForm");
+}*@
+<!-- where_togo_area_end  -->
+<!-- popular_destination_area_start  -->
+@*<div class="popular_destination_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb_70">
+                    <h3>Popular Destination</h3>
+                    <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="single_destination">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/destination/1.png" alt="">
+                    </div>
+                    <div class="content">
+                        <p class="d-flex align-items-center">Italy <a href="travel_destination.html">  07 Places</a> </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_destination">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/destination/2.png" alt="">
+                    </div>
+                    <div class="content">
+                        <p class="d-flex align-items-center">Brazil <a href="travel_destination.html">  03 Places</a> </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_destination">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/destination/3.png" alt="">
+                    </div>
+                    <div class="content">
+                        <p class="d-flex align-items-center">America <a href="travel_destination.html">  10 Places</a> </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_destination">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/destination/4.png" alt="">
+                    </div>
+                    <div class="content">
+                        <p class="d-flex align-items-center">Nepal <a href="travel_destination.html">  02 Places</a> </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_destination">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/destination/5.png" alt="">
+                    </div>
+                    <div class="content">
+                        <p class="d-flex align-items-center">Maldives <a href="travel_destination.html">  02 Places</a> </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="single_destination">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/destination/6.png" alt="">
+                    </div>
+                    <div class="content">
+                        <p class="d-flex align-items-center">Indonesia <a href="travel_destination.html">  05 Places</a> </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- popular_destination_area_end  -->
+<!-- newletter_area_start  -->
+@*@{
+    Html.RenderPartial("_Newsletter");
+}*@
+<!-- newletter_area_end  -->
+
+<div class="popular_places_area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section_title text-center mb_70">
+                    <h3>Tour mới nhất</h3>
+                    <p>Cùng khám phá những điểm đến đẹp mê ly.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_place">
+                        <div class="thumb">
+                            @{
+                                var ImagePath = "~/Areas/Admin/Assets/images/" + item.anhTour;
+                            }
+                            <img src="@Url.Content(ImagePath)" alt="">
+                            @if (item.giaKhuyenMai != null)
+                            {
+                                <a href="#" class="prise">@Html.DisplayFor(modelItem => item.giaKhuyenMai) VNĐ</a>
+                            }
+                            else
+                            {
+                                <a href="#" class="prise">@Html.DisplayFor(modelItem => item.giaGoc) VNĐ</a> <br />
+                            }
+                        </div>
+                        <div class="place_info">
+                            <a href="@Url.Action("DestinationDetail", "Home", new { id = item.idTour })">
+                                <h3>@Html.DisplayFor(modelItem => item.tenTour)</h3>
+                            </a>
+                            @*<p>@Html.DisplayFor(modelItem => item.tenTieuDeTour)</p>*@
+                            <div class="rating_days d-flex justify-content-between">
+                                <span class="d-flex justify-content-center align-items-center">
+                                    @*<i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>*@
+                                    @*<a href="#">(20 Review)</a>*@
+                                </span>
+                                <div class="days">
+                                    <i class="fa fa-clock-o"></i>
+                                    <a href="#">@Html.DisplayFor(modelItem => item.soNgay) ngày</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="more_place_btn text-center">
+                    <a class="boxed-btn4" href="@Url.Action("TravelDestination","Home")">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="video_area video_bg overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="video_wrap text-center">
+                    <h3>Enjoy Video</h3>
+                    <div class="video_icon">
+                        <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=f59dDEk57i0">
+                            <i class="fa fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@{
+    Html.RenderPartial("_Benefit");
+}
+
+
+
+<!-- testimonial_area  -->
+@{
+    Html.RenderPartial("_Testimonial");
+}
+<!-- /testimonial_area  -->
+
+
+@*@{
+    Html.RenderPartial("_RecentTrip");
+}*@

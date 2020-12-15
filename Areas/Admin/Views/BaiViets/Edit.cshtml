@@ -1,0 +1,120 @@
+﻿@model TOUR.Models.BaiViet
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+    var anhBaiViet = Model.anhBaiViet;
+    var ImagePath = "~/Areas/Admin/Assets/images/baiviet/" + anhBaiViet;
+    //string ngayTaoCu = Model.ngayTao.ToString();
+}
+
+<h2>Sửa bài viết</h2>
+
+<script src="~/wwwroot/ckeditor/ckeditor.js"></script>
+
+@using (Html.BeginForm("Edit", "BaiViets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>BaiViet</h4>*@
+        @*<hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                Tiêu đề <br />
+                @Html.EditorFor(model => model.tieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tieuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                Ảnh <br />
+                <img id="output" class="img-rounded" alt="Ảnh" width="180" height="200" src="@Url.Content(ImagePath)" />
+                @*<img id="oldimg" class="img-rounded" alt="Ảnh" width="1" height="1" style="display:none" src="@Url.Content(ImagePath)" />*@
+                <p><label for="ufile" style="cursor:pointer;">Chọn file ảnh</label></p>
+                <input type="file" name="ImageFile" id="ufile" style="display:none;" onchange="loadFile(event)" />
+                @*<input type="file" name="OldImage"  style="display:none;" onabort="loadOldFile(event)" />*@
+                <input type="text" name="oldImage" style="display:none;" value="@Url.Content(anhBaiViet)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                Nội dung <br />
+                @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { @class = "form-control" }, id = "noiDung" })
+                @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
+                <script type="text/javascript">
+
+                    CKEDITOR.config.language = "vi";
+                    CKEDITOR.config.htmlEncodeOutput = false;
+                    CKEDITOR.config.pasteFormWordPromptCleanup = true;
+                    CKEDITOR.config.pasteFormWordRemoveFontStyles = false;
+                    CKEDITOR.config.pasteFormWordRemoveStyles = false;
+                    CKEDITOR.config.ProcessHTMLEntities = false;
+                    CKEDITOR.config.entities = false;
+                    CKEDITOR.config.entities_latin = false;
+                    CKEDITOR.config.ForceSimpleAmpersand = true;
+                    CKEDITOR.replace('noiDung');
+
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                Ngày tạo <br />
+                @Html.TextBoxFor(model=>model.ngayTao, new { @readonly = "readonly" })
+                <!--Chọn ngày tạo mới<br />-->
+                @*@Html.ValidationMessageFor(model => model.ngayTao, "", new { @class = "text-danger" })*@
+                @*<input type="datetime-local" name="ngayTao" id="ngayTao" value="@ngayTaoCu.ToString()" />*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+            <div class="col-md-10">
+                Chủ đề <br />
+                @Html.DropDownList("ChuDeBaiVietId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ChuDeBaiVietId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+}
+
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById('output')
+        image.src = URL.createObjectURL(event.target.files[0])
+    }
+
+    // code hiển thị datetime
+    //var d = new Date(oldDate.toISOString());
+    //d = new Date(d.getTime() - d.getTimezoneOffset() * 60000) // Hiện thị đúng múi giờ UTC
+    //var elem = document.getElementById("ngayTao");
+    //elem.value = d.toISOString().slice(0, 16);
+
+</script>

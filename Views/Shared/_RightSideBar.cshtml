@@ -1,0 +1,15 @@
+﻿@model IEnumerable<TOUR.Models.ChuDeBaiViet>
+
+<aside class="single_sidebar_widget post_category_widget">
+    <h4 class="widget_title">Chủ đề</h4>
+    <ul class="list cat-list">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("BLog","Home", new { page = 1, ChuDeBaiVietId = item.ChuDeBaiVietId })" class="d-flex">
+                    <p>@Html.DisplayFor(modelItem => item.moTaChuDe)</p>
+                </a>
+            </li>
+        }
+    </ul>
+</aside>

@@ -1,0 +1,51 @@
+﻿@model TOUR.Models.ThongTinTheoTourKhach
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết phản hồi về bài viết</h2>
+
+<div>
+    @*<h4>ThongTinTheoTourKhach</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Địa điểm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.diaDiem)
+        </dd>
+
+        <dt>
+            Tên khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenKhachHang)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdtKhachHang)
+        </dd>
+
+        <dt>
+            Lời nhắn của khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loiNhanKhachHang)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

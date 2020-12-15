@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TOUR.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách đơn chờ duyệt</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã hóa đơn
+        </th>
+        <th>
+            Tên tour
+        </th>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Số điện thoại khách hàng
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.hoaDonId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tour.tenTour)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenKhachHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.sdtKhachHang)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Edit", new { id = item.hoaDonId }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.hoaDonId }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.hoaDonId }) |
+        @Html.ActionLink("Duyệt", "Sequence", new { id = item.hoaDonId })
+    </td>
+</tr>
+}
+
+</table>

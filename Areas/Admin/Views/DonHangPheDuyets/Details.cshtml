@@ -1,0 +1,68 @@
+﻿@model TOUR.Models.DonHangPheDuyet
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết đơn đã duyệt</h2>
+
+<div>
+    @*<h4>DonHangPheDuyet</h4>
+        <hr />*@
+    <dl class="dl-horizontal">
+
+        <dt>
+            Mã hóa đơn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDon.hoaDonId)
+        </dd>
+
+        <dt>
+            Tên tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDon.Tour.tenTour)
+        </dd>
+
+        <dt>
+            Tên khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDon.tenKhachHang)
+        </dd>
+
+        <dt>
+            Số điện thoại khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoaDon.sdtKhachHang)
+        </dd>
+
+        <dt>
+            Trạng thái duyệt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThaiDuyet)
+        </dd>
+
+        <dt>
+            Ngày phê duyệt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayPheDuyet)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

@@ -1,0 +1,113 @@
+﻿@*@model IEnumerable<TOUR.Models.Tour>*@
+@model PagedList.IPagedList<TOUR.Models.Tour>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" type="text/css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "TravelDestination";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Địa điểm</h3>
+                    @*<p>Pixel perfect design with awesome contents</p>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+<!-- where_togo_area_start  -->
+@*@{
+        Html.RenderPartial("_SearchForm");
+    }*@
+<!-- where_togo_area_end  -->
+
+
+<div class="popular_places_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                @{ 
+                    Html.RenderAction("_FilterTour", "Home");
+                }
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    @{
+                                        // Lấy đường dẫn file ảnh của tour
+                                        string ImagePath = "~/Areas/Admin/Assets/images/" + item.anhTour;
+                                    }
+                                    <img src="@Url.Content(ImagePath)" height="200" class="img-thumbnail" alt="">
+                                    @if (item.giaKhuyenMai != null)
+                                    {
+                                        <a href="#" class="prise">@Html.DisplayFor(modelItem => item.giaKhuyenMai) VNĐ</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" style="text-decoration-line: line-through;">@Html.DisplayFor(modelItem => item.giaGoc) VNĐ</a> <br />
+                                    }
+
+                                </div>
+                                <div class="place_info">
+                                    @if (item.giaKhuyenMai != null)
+                                    {
+                                        <span>Giá gốc: </span><a href="#" style="text-decoration-line: line-through;">@Html.DisplayFor(modelItem => item.giaGoc) VNĐ</a> <br />
+                                    }
+                                    <a href="@Url.Action("DestinationDetail", "Home", new { id = item.idTour })">
+                                        <h3>@Html.DisplayFor(modelItem => item.tenTour)</h3>
+                                    </a>
+                                    @*<p>@Html.DisplayFor(modelItem => item.tenTieuDeTour)</p>*@
+                                    <p>@Html.DisplayFor(modelItem=>item.DongTour.moTaDongTour)</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            @*<i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>*@
+                                            @*<a href="#">(20 Review)</a>*@
+                                        </span>
+                                        <div class="days">
+                                            <i class="fa fa-clock-o"></i>
+                                            <a href="#">@Html.DisplayFor(modelItem => item.soNgay) Ngày</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="more_place_btn text-center">
+                            @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                            @Html.PagedListPager(Model, page => Url.Action("TravelDestination", new { page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- newletter_area_start  -->
+@*@{
+        Html.RenderPartial("_Newsletter");
+    }*@
+<!-- newletter_area_end  -->
+@*@{
+        Html.RenderPartial("_RecentTrip");
+    }*@
+

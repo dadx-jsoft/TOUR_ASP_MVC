@@ -1,0 +1,175 @@
+﻿@model TOUR.Models.Tour
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+    var anhTour = Model.anhTour;
+    var anhChiTietTour = Model.anhChiTietTour;
+
+    var ImagePath1 = "~/Areas/Admin/Assets/images/" + anhTour;
+    var ImagePath2 = "~/Areas/Admin/Assets/images/" + anhChiTietTour;
+}
+
+<h2>Sửa thông tin tour</h2>
+
+<script src="~/wwwroot/ckeditor/ckeditor.js"></script>
+
+
+@using (Html.BeginForm("Edit", "Tours", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>Tour</h4>
+        <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idTour)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.dongTourId, "dongTourId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Dòng tour</span> <br />
+            <div class="col-md-10">
+                @Html.DropDownList("dongTourId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.dongTourId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.diaDiem, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Địa điểm</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.diaDiem, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.diaDiem, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.anhTour, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Ảnh tour</span> <br />
+            <div class="col-md-10">
+                <img id="output1" class="img-rounded" alt="Ảnh" width="180" height="200" src="@Url.Content(ImagePath1)" />
+                <p><label for="ufile1" style="cursor:pointer;">Chọn file ảnh</label></p>
+                <input type="file" name="ImageFile1" id="ufile1" style="display:none;" onchange="loadFile1(event)" />
+                <input type="text" name="anhTour" id="anhTour" style="display:none;" value="@Url.Content(anhTour)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.anhChiTietTour, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Ảnh chi tiết tour tour</span> <br />
+            <div class="col-md-10">
+                <img id="output2" class="img-rounded" alt="Ảnh" width="180" height="200" src="@Url.Content(ImagePath2)" />
+                <p><label for="ufile2" style="cursor:pointer;">Chọn file ảnh</label></p>
+                <input type="file" name="ImageFile2" id="ufile2" style="display:none;" onchange="loadFile2(event)" />
+                <input type="text" name="anhChiTietTour" id="anhChiTietTour" style="display:none;" value="@Url.Content(anhChiTietTour)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.giaGoc, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Giá gốc</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.giaGoc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.giaGoc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.giaKhuyenMai, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Giá khuyến mãi</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.giaKhuyenMai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.giaKhuyenMai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.khuyenMaiUuDai, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Khuyến mãi ưu đãi</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.khuyenMaiUuDai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.khuyenMaiUuDai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.tenTour, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Tên tour</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tenTour, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tenTour, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.tenTieuDeTour, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Tên tiêu đề tour</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tenTieuDeTour, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tenTieuDeTour, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <span class="control-label col-md-2">Mô tả tour</span> <br />
+                @Html.TextAreaFor(model => model.moTaTour, new { htmlAttributes = new { @class = "form-control" }, id = "moTaTour" })
+                @Html.ValidationMessageFor(model => model.moTaTour, "", new { @class = "text-danger" })
+
+                <script type="text/javascript">
+
+                    CKEDITOR.config.language = "vi";
+                    CKEDITOR.config.htmlEncodeOutput = false;
+                    CKEDITOR.config.pasteFormWordPromptCleanup = true;
+                    CKEDITOR.config.pasteFormWordRemoveFontStyles = false;
+                    CKEDITOR.config.pasteFormWordRemoveStyles = false;
+                    CKEDITOR.config.ProcessHTMLEntities = false;
+                    CKEDITOR.config.entities = false;
+                    CKEDITOR.config.entities_latin = false;
+                    CKEDITOR.config.ForceSimpleAmpersand = true;
+                    CKEDITOR.replace('moTaTour');
+
+                </script>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.soNgay, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Số ngày</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soNgay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.soNgay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại", "Index")
+</div>
+
+@if (ViewBag.Error != null)
+{
+    <br />
+    <div class="alert alert-danger" role="alert">@ViewBag.Error</div>
+}
+
+
+<script>
+    var loadFile1 = function (event) {
+        var image = document.getElementById('output1')
+        image.src = URL.createObjectURL(event.target.files[0])
+    }
+
+    var loadFile2 = function (event) {
+        var image = document.getElementById('output2')
+        image.src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

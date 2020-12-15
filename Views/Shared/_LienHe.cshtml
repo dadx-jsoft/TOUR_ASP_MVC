@@ -1,0 +1,27 @@
+﻿@model TOUR.Models.LienHe
+
+<div class="row offset-lg-1">
+    <br />
+    <div class="media contact-info col-lg-4">
+        <span class="contact-info__icon"><i class="ti-home"></i></span>
+        <div class="media-body">
+            @*<h3>Nhổn, Minh Khai</h3>
+                <p>Từ Liêm, Hanoi</p>*@
+            <h3>@Model.diaChiCty</h3>
+        </div>
+    </div>
+    <div class="media contact-info col-lg-4">
+        <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+        <div class="media-body">
+            <h3>@Model.sdtCty</h3>
+            <p>9am - 6pm thứ 2 đến thứ 6</p>
+        </div>
+    </div>
+    <div class="media contact-info col-lg-4">
+        <span class="contact-info__icon"><i class="ti-email"></i></span>
+        <div class="media-body">
+            <h3>@Model.emailCty</h3>
+            <p>Gửi mail cho chúng tôi bất cứ lúc nào!</p>
+        </div>
+    </div>
+</div>

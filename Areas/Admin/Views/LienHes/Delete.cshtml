@@ -1,0 +1,65 @@
+﻿@model TOUR.Models.LienHe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h2>Delete</h2>*@
+
+<h3>Bạn có chắc muốn xóa?</h3>
+<div>
+    @*<h4>LienHe</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Tên công ty
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenCty)
+        </dd>
+
+        <dt>
+            Địa chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChiCty)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdtCty)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailCty)
+        </dd>
+
+        <dt>
+            Facebook
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facebookCty)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "Index")
+        </div>
+    }
+</div>

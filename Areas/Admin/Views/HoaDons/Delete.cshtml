@@ -1,0 +1,58 @@
+﻿@model TOUR.Models.HoaDon
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h2>Delete</h2>*@
+
+<h3>Bạn có chắc muốn xóa?</h3>
+<div>
+    @*<h4>HoaDon</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Địa điểm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.diaDiem)
+        </dd>
+
+        <dt>
+            Tên tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.tenTour)
+        </dd>
+
+        <dt>
+            Tên khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenKhachHang)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdtKhachHang)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "Index")
+        </div>
+    }
+</div>

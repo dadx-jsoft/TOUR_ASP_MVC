@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TOUR.Models.PhanHoiLienHe>
+
+
+<div class="comments-area">
+    <h4>@Model.Count() Comments</h4>
+    @foreach (var item in Model)
+    {
+        <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                    <div class="thumb">
+                        <img src="~/wwwroot/img/comment/no-photo.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="comment">
+                            @Html.DisplayFor(modelItem => item.loiNhanKhachHang)
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <h5>
+                                    <a href="#">@Html.DisplayFor(modelItem => item.tenKhachHang)</a>
+                                </h5>
+                                @*<p class="date">December 4, 2017 at 3:12 pm </p>*@
+                            </div>
+                            @*<div class="reply-btn">
+                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+</div>
+

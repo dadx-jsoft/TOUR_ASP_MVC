@@ -1,0 +1,37 @@
+﻿@model TOUR.Models.Tour
+
+<div class="contact_join">
+    <h3>Đặt tour</h3>
+    @using (Html.BeginForm("Create", "HoaDon", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="single_input">
+                    Họ tên:
+                    <input type="text" name="tenKhachHang" value="" />
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <div class="single_input">
+                    Số điện thoại
+                    <input type="text" name="sdtKhachHang" value="" />
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <div class="single_input">
+                    <input type="text" name="idTour" style="display:none;" value="@Model.idTour" />
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="submit_btn">
+                    <button class="boxed-btn4" type="submit">Book</button>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

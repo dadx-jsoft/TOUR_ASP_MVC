@@ -1,0 +1,57 @@
+﻿@model TOUR.Models.DonHangPheDuyet
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>DonHangPheDuyet</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.hoaDonId, "hoaDonId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Mã hóa đơn</span> <br />
+            <div class="col-md-10">
+                @Html.DropDownList("hoaDonId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.hoaDonId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.trangThaiDuyet, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Trạng thái duyệt</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.trangThaiDuyet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.trangThaiDuyet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ngayPheDuyet, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <span class="control-label col-md-2">Ngày phê duyệt</span> <br />
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ngayPheDuyet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ngayPheDuyet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại", "Index")
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TOUR.Models.PhanHoiLienHe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Bình luận của người dùng với bài viết</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên bài viết
+        </th>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Lời nhắn
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BaiViet.tieuDe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tenKhachHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.sdtKhachHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.emailKhachHang)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.loiNhanKhachHang)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>

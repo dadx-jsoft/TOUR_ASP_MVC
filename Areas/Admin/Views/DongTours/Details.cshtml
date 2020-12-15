@@ -1,0 +1,27 @@
+﻿@model TOUR.Models.DongTour
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết dòng tour</h2>
+
+<div>
+    @*<h4>DongTour</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Dòng tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moTaDongTour)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.dongTourId }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

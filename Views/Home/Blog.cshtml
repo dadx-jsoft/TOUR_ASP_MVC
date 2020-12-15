@@ -1,0 +1,109 @@
+﻿@model PagedList.IPagedList<TOUR.Models.BaiViet>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" type="text/css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_4">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>blog</h3>
+                    @*<p>Pixel perfect design with awesome contents</p>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ bradcam_area  -->
+<!--================Blog Area =================-->
+<section class="blog_area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                    @foreach (var item in Model)
+                    {
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                @{
+                                    // Lấy đường dẫn ảnh
+                                    string ImagePath = "~/Areas/Admin/Assets/images/baiviet/" + item.anhBaiViet;
+                                }
+                                <img class="card-img rounded-0" src="@Url.Content(ImagePath)" alt="">
+                                <a href="#" class="blog_item_date">
+                                    <p>@Html.DisplayFor(modelItem => item.ngayTao)</p>
+                                </a>
+                            </div>
+
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="@Url.Action("SingleBlog", "Home", new { id = item.id })">
+                                    <h2>@Html.DisplayFor(modelItem => item.tieuDe)</h2>
+                                </a>
+                                @*<p>
+                                        That dominion stars lights dominion divide years for fourth have don't stars is that
+                                        he earth it first without heaven in place seed it second morning saying.
+                                    </p>*@
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="fa fa-user"></i> @Html.DisplayFor(modelItem => item.ChuDeBaiViet.moTaChuDe)</a></li>
+                                    @*<li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>*@
+                                </ul>
+                            </div>
+                        </article>
+                    }
+
+
+
+
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Blog", new { page }))
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    @*@{
+                            Html.RenderAction("_SearchBlog");
+                        }*@
+                    @using (Html.BeginForm())
+                    {
+                        <aside class="single_sidebar_widget search_widget">
+                            <form action="#">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input name ="searchString" type="text" class="form-control" placeholder='Từ khóa tìm kiếm'
+                                               onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = 'Từ khóa tìm kiếm'">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                        type="submit">
+                                    Tìm kiếm
+                                </button>
+                            </form>
+                        </aside>
+                    }
+
+                    @{
+                        Html.RenderAction("_RightSideBar");
+                    }
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->

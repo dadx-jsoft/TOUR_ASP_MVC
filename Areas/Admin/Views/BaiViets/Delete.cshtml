@@ -1,0 +1,65 @@
+﻿@model TOUR.Models.BaiViet
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h2>Xóa</h2>*@
+
+<h3>Bạn có chắc muốn xóa bài viết này?</h3>
+<div>
+    @*<h4>BaiViet</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Chủ đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDeBaiViet.moTaChuDe)
+        </dd>
+
+        <dt>
+            Tiêu đề
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tieuDe)
+        </dd>
+
+        <dt>
+            Ảnh bài viết
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anhBaiViet)
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.noiDung)
+        </dd>
+
+        <dt>
+            Ngày tạo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayTao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

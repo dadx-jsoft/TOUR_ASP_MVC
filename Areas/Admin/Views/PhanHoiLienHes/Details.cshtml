@@ -1,0 +1,51 @@
+﻿@model TOUR.Models.PhanHoiLienHe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết phản hồi của khách hàng về bài viết</h2>
+
+<div>
+    @*<h4>PhanHoiLienHe</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Tên khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenKhachHang)
+        </dd>
+
+        <dt>
+            Số điện thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sdtKhachHang)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailKhachHang)
+        </dd>
+
+        <dt>
+            Lời nhắn của khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loiNhanKhachHang)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

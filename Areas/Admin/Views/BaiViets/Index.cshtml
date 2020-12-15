@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TOUR.Models.BaiViet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Các bài viết</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mô tả chủ đề
+        </th>
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Ảnh bài viết
+        </th>
+        <th>
+            Chủ đề
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ChuDeBaiViet.moTaChuDe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tieuDe)
+    </td>
+    <td>
+        @{
+            string ImagePath = "~/Areas/Admin/Assets/images/baiviet/" + item.anhBaiViet;
+        }
+        <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" alt="Alternate Text" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ChuDeBaiViet.moTaChuDe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ngayTao)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.id }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>

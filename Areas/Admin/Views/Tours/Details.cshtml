@@ -1,0 +1,109 @@
+﻿@model TOUR.Models.Tour
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết tour</h2>
+
+<div>
+    @*<h4>Tour</h4>
+    <hr />*@
+    <dl class="dl-horizontal">
+        <dt>
+            Dòng tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DongTour.moTaDongTour)
+        </dd>
+
+        <dt>
+            Địa điểm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaDiem)
+        </dd>
+
+        <dt>
+            Ảnh tour
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(@Model.anhTour)" width="200" alt="Ảnh" />
+        </dd>
+
+        <dt>
+            Ảnh chi tiết
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(@Model.anhChiTietTour)" width="200" alt="Ảnh" />
+        </dd>
+
+        <dt>
+            Giá gốc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaGoc)
+        </dd>
+
+        <dt>
+            Giá khuyến mãi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaKhuyenMai)
+        </dd>
+
+        <dt>
+            Khuyến mãi ưu đãi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.khuyenMaiUuDai)
+        </dd>
+
+        <dt>
+            Tên tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenTour)
+        </dd>
+
+        <dt>
+            Tên tiêu đề tour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenTieuDeTour)
+        </dd>
+
+        <dt>
+            Mô tả tour
+            
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.moTaTour)*@
+            @Html.Raw(Model.moTaTour)
+        </dd>
+
+        <dt>
+            Số ngày
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soNgay)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.idTour }) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

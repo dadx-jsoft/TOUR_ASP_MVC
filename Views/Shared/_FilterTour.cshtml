@@ -1,0 +1,91 @@
+﻿@model IEnumerable<TOUR.Models.DongTour>
+
+@{
+    ViewBag.Title = "filterTour";
+}
+
+<div class="filter_result_wrap">
+    @*<h3>Lọc</h3>*@
+    <aside class="single_sidebar_widget post_category_widget">
+        <h4 class="widget_title">Dòng tour</h4>
+        <ul class="list cat-list">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="@Url.Action("TravelDestination","Home", new {  dongTourId = item.dongTourId })" class="d-flex">
+                        <p>@Html.DisplayFor(modelItem => item.moTaDongTour)</p>
+                    </a>
+                </li>
+            }
+        </ul>
+    </aside>
+    <br />
+    @using (Html.BeginForm())
+    {
+        <aside class="single_sidebar_widget search_widget">
+            <form action="#">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input name="searchString" type="text" class="form-control" placeholder='Từ khóa tìm kiếm'
+                               onfocus="this.placeholder = ''"
+                               onblur="this.placeholder = 'Từ khóa tìm kiếm'">
+                        <div class="input-group-append">
+                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                        type="submit">
+                    Tìm kiếm
+                </button>
+            </form>
+        </aside>
+    }
+    @*<div class="filter_bordered">
+            <div class="filter_inner">
+
+
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="single_select">
+                        <select>
+                            <option data-display="Country">Country</option>
+                            <option value="1">Africa</option>
+                            <option value="2">canada</option>
+                            <option value="4">USA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="single_select">
+                        <select>
+                            <option data-display="Dòng tour"></option>
+                            @foreach (var item in Model)
+                            {
+                                <option>
+                                    <a href="@Url.Action("TravelDestination", "Home", new { dongTourId = item.dongTourId })" >@Html.DisplayFor(modelItem => item.moTaDongTour)</a>
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="range_slider_wrap">
+                        <span class="range">Prise range</span>
+                        <div id="slider-range"></div>
+                        <p>
+                            <input type="text" id="amount" readonly style="border:0; color:#7A838B; font-weight:400;">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            </div>
+
+            <div class="reset_btn">
+                <button class="boxed-btn4" type="submit">Reset</button>
+            </div>
+        </div>*@
+</div>
+

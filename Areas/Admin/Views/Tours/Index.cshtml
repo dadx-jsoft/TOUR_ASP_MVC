@@ -1,0 +1,94 @@
+﻿@model IEnumerable<TOUR.Models.Tour>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách tour</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Dòng tour
+        </th>
+        <th>
+            Địa điểm
+        </th>
+        <th>
+            Ảnh tour
+        </th>
+        @*<th>
+            Ảnh chi tiết tour
+        </th>*@
+        <th>
+            Giá gốc
+        </th>
+        <th>
+            Giá khuyến mãi
+        </th>
+        <th>
+            Khuyến mãi ưu đãi
+        </th>
+        <th>
+            Tên tour
+        </th>
+        @*<th>
+            Tên tiêu đề tour
+        </th>*@
+        <th>
+            Số ngày
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DongTour.moTaDongTour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diaDiem)
+        </td>
+        <td>
+            @{
+                string ImagePath1 = "~/Areas/Admin/Assets/images/" + item.anhTour;
+            }
+            <img src="@Url.Content(ImagePath1)" width="100" class="img-thumbnail" alt="Alternate Text" />
+        </td>
+        @*<td>
+            @{
+                string ImagePath2 = "~/Areas/Admin/Assets/images/" + item.anhChiTietTour;
+            }
+            <img src="@Url.Content(ImagePath2)" width="100" class="img-thumbnail" alt="Alternate Text" />
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.giaGoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giaKhuyenMai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.khuyenMaiUuDai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenTour)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.tenTieuDeTour)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.soNgay)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.idTour }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.idTour }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.idTour })
+        </td>
+    </tr>
+}
+
+</table>
